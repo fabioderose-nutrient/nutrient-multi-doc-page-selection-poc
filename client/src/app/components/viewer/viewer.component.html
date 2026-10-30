@@ -1,0 +1,4 @@
+<div class="viewer-wrapper">
+  <div *ngIf="!documentId" class="no-doc-message">Select a PDF to view</div>
+  <div #viewerContainer class="viewer-container" [hidden]="!documentId"></div>
+</div>

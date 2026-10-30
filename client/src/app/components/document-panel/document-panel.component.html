@@ -1,0 +1,42 @@
+<div class="panel-header">
+  <h2>Documents</h2>
+</div>
+
+<div class="document-list">
+  <div *ngIf="loading" class="loading">Loading documents...</div>
+  <div *ngIf="!loading && documents.length === 0" class="loading">
+    No documents found. Add files to the Documents folder.
+  </div>
+
+  <div *ngFor="let doc of documents" class="document-section">
+    <div class="document-header" (click)="toggleExpand(doc.id)">
+      <span class="toggle-icon" [class.expanded]="isExpanded(doc.id)">&#9654;</span>
+      <span
+        class="doc-name"
+        [class.clickable]="isPdf(doc.fileName)"
+        [title]="doc.fileName + (isPdf(doc.fileName) ? ' (click to view)' : '')"
+        (click)="onDocNameClick(doc, $event)">
+        {{ doc.fileName }}
+      </span>
+      <span class="page-count">{{ doc.pageCount }}p</span>
+      <button class="select-all-btn" (click)="onSelectAllClick(doc, $event)">
+        {{ selectionService.isAllSelected(doc.id, doc.pageCount) ? 'Deselect all' : 'Select all' }}
+      </button>
+    </div>
+
+    <div class="pages-grid" *ngIf="isExpanded(doc.id)">
+      <div
+        *ngFor="let page of getPages(doc.pageCount)"
+        class="page-thumb"
+        [class.selected]="selectionService.isSelected(doc.id, page)"
+        (click)="onPageClick(doc.id, page)">
+        <img
+          [src]="documentService.getThumbnailUrl(doc.id, page)"
+          [alt]="'Page ' + page"
+          loading="lazy">
+        <span class="page-number">{{ page }}</span>
+        <span class="check-overlay"></span>
+      </div>
+    </div>
+  </div>
+</div>

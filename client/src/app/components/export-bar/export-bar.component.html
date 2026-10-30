@@ -1,0 +1,17 @@
+<div class="export-bar">
+  <span class="selection-count">{{ selectionService.totalSelected }} page{{ selectionService.totalSelected !== 1 ? 's' : '' }} selected</span>
+  <div class="export-buttons">
+    <button
+      class="btn-pdf"
+      [disabled]="selectionService.totalSelected === 0 || exporting"
+      (click)="export('pdf')">
+      {{ exporting ? 'Exporting...' : 'Export as PDF' }}
+    </button>
+    <button
+      class="btn-tiff"
+      [disabled]="selectionService.totalSelected === 0 || exporting"
+      (click)="export('tiff')">
+      {{ exporting ? 'Exporting...' : 'Export as TIFF' }}
+    </button>
+  </div>
+</div>

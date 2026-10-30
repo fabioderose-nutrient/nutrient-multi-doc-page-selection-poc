@@ -1,0 +1,27 @@
+:host {
+  display: block;
+  flex: 1;
+  position: relative;
+}
+
+.viewer-wrapper {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  background: #313244;
+}
+
+.viewer-container {
+  width: 100%;
+  height: 100%;
+}
+
+.no-doc-message {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #6c7086;
+  font-size: 16px;
+  text-align: center;
+}

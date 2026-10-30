@@ -1,0 +1,7 @@
+<div class="app-layout">
+  <aside class="left-panel">
+    <app-document-panel (documentSelected)="onDocumentSelected($event)"></app-document-panel>
+    <app-export-bar></app-export-bar>
+  </aside>
+  <app-viewer [documentId]="activeDocumentId"></app-viewer>
+</div>

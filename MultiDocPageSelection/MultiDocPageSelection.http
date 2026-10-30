@@ -1,0 +1,23 @@
+@MultiDocPageSelection_HostAddress = http://localhost:5050
+
+GET {{MultiDocPageSelection_HostAddress}}/api/documents
+Accept: application/json
+
+###
+
+GET {{MultiDocPageSelection_HostAddress}}/api/documents/sample-contract.pdf/pages/1/thumbnail?width=150
+
+###
+
+POST {{MultiDocPageSelection_HostAddress}}/api/export
+Content-Type: application/json
+
+{
+  "format": "pdf",
+  "pages": [
+    { "documentId": "sample-contract.pdf", "pageNumber": 1 },
+    { "documentId": "sample-invoices.pdf", "pageNumber": 2 }
+  ]
+}
+
+###
